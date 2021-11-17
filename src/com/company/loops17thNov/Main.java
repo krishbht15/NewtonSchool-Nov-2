@@ -1,4 +1,4 @@
-package com.company;
+package com.company.loops17thNov;
 
 import java.util.Scanner;
 
