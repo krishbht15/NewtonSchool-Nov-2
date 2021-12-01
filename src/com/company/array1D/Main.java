@@ -6,14 +6,14 @@ public class Main {
 
     public static void main(String[] args) {
         // write your code here
-        int[] arr = {2, 3, 4, 5, 1};
-        int[] arr2 = {43, 12, 34};
+//        int[] arr = {2, 3, 4, 5, 1};
+//        int[] arr2 = {43, 12, 34};
         //        for (int i = 0; i < 5; i++) {
 //            System.out.println(arr[i] + " is at " + i);
 //        }
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the size of the array:");
+//        System.out.println("Enter the size of the array:");
 //        int size = scanner.nextInt();
 //        int[] userArray = new int[size];
 //        for (int i = 0; i < size; i++) {
@@ -26,9 +26,12 @@ public class Main {
 //        int k = scanner.nextInt();
 //        rotateKSteps2(userArray, k);
 //        printArray(userArray);
-        int[] a = {9, 9, 9, 9, 9};
-        int[] b = {1, 1};
-        System.out.println(sumOfArray(a, b));
+//        int[] a = {1, 0, 0, 0};
+//        int[] b = {1};
+//        System.out.println(sumOfArray(a, b));
+//        System.out.println(diffOfTwoArray(a, b));
+        int[] arr = {1, 1, 1, 2, 2, 3, 3, 4, 4, 4, 4, 5};
+        firstAndLastElementInAnArray(arr, 4);
     }
 
     public static void printMinMaxOfArray(int[] arr) {
@@ -149,6 +152,53 @@ public class Main {
         }
         if (carry != 0) sum = carry + sum;
         return sum;
+    }
+
+    public static String diffOfTwoArray(int[] a, int[] b) {
+        int ai = a.length - 1;
+        int bi = b.length - 1;
+        int carry = 0;
+        String diff = "";
+        while (ai >= 0 && bi >= 0) {
+            int currDiff = a[ai] - b[bi] + carry;
+            carry = 0;
+            if (currDiff < 0) {
+                currDiff = currDiff + 10;
+                carry = -1;
+            }
+            diff = currDiff + diff;
+            ai--;
+            bi--;
+        }
+        while (ai >= 0) {
+            int currDiff = a[ai] + carry;
+            carry = 0;
+            if (currDiff < 0) {
+                currDiff = currDiff + 10;
+                carry = -1;
+            }
+            diff = currDiff + diff;
+            ai--;
+        }
+        return diff;
+    }
+
+    public static void firstAndLastElementInAnArray(int[] a, int x) {
+        boolean numberEncountered = false;
+        int li = -1;
+        int fi = -1;
+        for (int i = 0; i < a.length; i++) {
+            if (numberEncountered == false && a[i] == x) {
+                numberEncountered = true;
+                fi = li = i;
+            } else if (numberEncountered == true && a[i] == x) {
+                li++;
+            } else if (numberEncountered == true && a[i] != x) {
+                break;
+            }
+        }
+        System.out.println("First index is " + fi);
+        System.out.println("Last index is " + li);
     }
 
     public static void printArray(int[] arr) {
