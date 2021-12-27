@@ -1,6 +1,6 @@
-package com.company.dec23_24;
+package com.company.linkedList;
 
-import sun.security.krb5.internal.crypto.ArcFourHmacEType;
+import java.util.HashMap;
 
 public class LinkedList {
     Node head;
@@ -13,11 +13,16 @@ public class LinkedList {
 
     class Node {
         int data;
+        Node random;
         Node next;
 
         public Node(int data, Node next) {
             this.data = data;
             this.next = next;
+        }
+
+        public Node(int data) {
+            this.data = data;
         }
     }
 
@@ -140,5 +145,64 @@ public class LinkedList {
             f = f.next.next;
         }
         return s;
+    }
+
+    public void reversalWithData() {
+        int i = 0;
+        int j = this.size - 1;
+        while (i < j) {
+            Node iNode = getAt(i);
+            Node jNode = getAt(j);
+            int temp = iNode.data;
+            iNode.data = jNode.data;
+            jNode.data = temp;
+            i++;
+            j--;
+        }
+    }
+
+    public void reversalWithPointers() {
+        Node c = this.head;
+        Node p = null;
+        while (c.next != null) {
+            Node n = c.next;
+            c.next = p;
+            p = c;
+            c = n;
+        }
+        c.next = p;
+        this.head = c;
+    }
+
+    //https://leetcode.com/problems/copy-list-with-random-pointer/
+    public Node copyRandomList(Node head) {
+        Node n = head;
+        Node newLL = new Node(-1);
+        Node res = newLL;
+        while (n != null) {
+            Node node = new Node(n.data);
+            newLL.next = node;
+            newLL = newLL.next;
+            n = n.next;
+        }
+        res = res.next;
+        n = head;
+        newLL = res;
+        HashMap<Node, Node> map = new HashMap<>();
+        while (n != null) {
+            map.put(n, newLL);
+            n = n.next;
+            newLL = newLL.next;
+        }
+        n = head;
+        while (n != null) {
+            if (n.random != null) {
+                Node oldNode = n;
+                Node newNode = map.get(oldNode);
+                newNode.random = map.get(oldNode.random);
+            }
+            n = n.next;
+        }
+        return res;
     }
 }

@@ -1,4 +1,4 @@
-package com.company.dec23_24;
+package com.company.linkedList;
 
 import java.util.HashSet;
 
@@ -26,20 +26,20 @@ public class Main {
         ll.addFirst(0);
         ll.addFirst(-1);
         ll.addFirst(-2);
-        ll.print();
+//        ll.print();
 //        ll.removeFirst();
 //        ll.removeFirst();
 //        ll.print();
         ll.addAt(3, 5);
-        ll.print();
+//        ll.print();
         ll.removeAt(3);
-        ll.print();
+//        ll.print();
         ll.removeAt(0);
 //        ll.removeAt(0);
         ll.print();
-        System.out.println(ll.getFirstMid());
-        System.out.println(ll.getSecondMid());
-
+//        ll.reversalWithData();
+        ll.reversalWithPointers();
+        ll.print();
     }
 
     public static void printCommonElements(int[] a, int[] b) {
