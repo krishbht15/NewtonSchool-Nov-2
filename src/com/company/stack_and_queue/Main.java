@@ -64,4 +64,46 @@ public class Main {
         }
         return stack.isEmpty();
     }
+
+// https://practice.geeksforgeeks.org/problems/next-larger-element-1587115620/1
+
+    public static long[] nextLargerElement(long[] arr) {
+        long[] res = new long[arr.length];
+        Stack<Integer> stack = new Stack<>();
+        for (int i = 0; i < arr.length; i++) {
+            long c = arr[i];
+            if (stack.isEmpty() || arr[stack.peek()] > c) {
+                stack.push(i);
+            } else {
+                while (!stack.isEmpty() && arr[stack.peek()] < c) {
+                    res[stack.pop()] = c;
+                }
+                stack.push(i);
+            }
+        }
+        while (!stack.isEmpty()) {
+            res[stack.pop()] = -1;
+        }
+        return res;
+    }
+
+    //    https://practice.geeksforgeeks.org/problems/stock-span-problem-1587115621/1
+//    Next greater element on Left Side.
+    public static int[] calculateSpan(int[] arr) {
+        int[] res = new int[arr.length];
+        Stack<Integer> stack = new Stack<>();
+        for (int i = 0; i < arr.length; i++) {
+            int c = arr[i];
+            while (!stack.isEmpty() && arr[stack.peek()] <= c) {
+                stack.pop();
+            }
+            if (stack.isEmpty()) {
+                res[i] = i + 1;
+            } else {
+                res[i] = i - stack.peek();
+            }
+            stack.push(i);
+        }
+        return res;
+    }
 }

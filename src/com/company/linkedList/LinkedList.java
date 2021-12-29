@@ -205,4 +205,35 @@ public class LinkedList {
         }
         return res;
     }
+
+    //    https://my.newtonschool.co/playground/code/5nejygaji7qq/
+    public static Node intersection(Node head1, Node head2) {
+        int h1Size = getSize(head1);
+        int h2Size = getSize(head2);
+        int abs = Math.abs(h1Size - h2Size);
+        if (h1Size > h2Size) {
+            for (int i = 0; i < abs; i++) {
+                head1 = head1.next;
+            }
+        } else {
+            for (int i = 0; i < abs; i++) {
+                head2 = head2.next;
+            }
+        }
+
+        while (head1 != head2) {
+            head1 = head1.next;
+            head2 = head2.next;
+        }
+        return head2;
+    }
+
+    public static int getSize(Node node) {
+        int i = 0;
+        while (node != null) {
+            i++;
+            node = node.next;
+        }
+        return i;
+    }
 }
