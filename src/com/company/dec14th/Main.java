@@ -1,5 +1,6 @@
 package com.company.dec14th;
 
+
 import java.util.Scanner;
 
 public class Main {
@@ -8,6 +9,7 @@ public class Main {
 //        System.out.println("Index is " + linearSearch(arr, 22));
 //        int[] arr = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
 //        System.out.println("Index is " + binarySearchRecursive(arr, 20, 0, arr.length - 1));
+
     }
 
     public static int linearSearch(int[] arr, int k) {
